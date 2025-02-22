@@ -6,7 +6,7 @@ CORS(app)
 
 @app.route("/")
 def home():
-    return "Hola, Flask en Vercel!"
+    return "Hola, Railway con Flask!"
 
 @app.route("/api/generate-password", methods=["GET"])
 def generate_password():
@@ -17,6 +17,5 @@ def generate_password():
     password = "".join(random.choice(characters) for _ in range(length))
     return jsonify({"password": password})
 
-# Para que funcione en Vercel
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)

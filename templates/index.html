@@ -14,6 +14,21 @@
         <button onclick="generarContraseña()">Generar</button>
         <p id="resultado"></p>
     </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function generarContraseña() {
+            let longitud = document.getElementById("longitud").value;
+
+            fetch("/generar", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ longitud: longitud })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("resultado").innerText = "Contraseña: " + data.contraseña;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
 </body>
 </html>
